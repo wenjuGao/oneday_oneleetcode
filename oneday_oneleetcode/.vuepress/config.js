@@ -1,7 +1,7 @@
 // 配置文件的入口文件，也可以是 YML 或 toml
 
 module.exports = {
-	base: '/',
+	base: '/oneday_oneleetcode/',
 	title: '坑人的小书童',
 	description: '每天一道leetcode，从零开始学习算法 一天一大leet 小书童 坑人的小书童',
 	extraWatchFiles: [
