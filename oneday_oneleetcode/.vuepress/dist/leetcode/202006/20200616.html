@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>二叉树的序列化与反序列化 | 坑人的小书童</title>
+	<meta name="generator" content="VuePress 1.5.2">
+	
+	<meta name="description" content="每天一道leetcode，从零开始学习算法 一天一大leet 小书童 坑人的小书童">
+	<link rel="preload" href="/assets/css/0.styles.d272e33e.css" as="style"><link rel="preload" href="/assets/js/app.83b8b455.js" as="script"><link rel="preload" href="/assets/js/2.f1097bd3.js" as="script"><link rel="preload" href="/assets/js/23.2b2c1ae5.js" as="script"><link rel="prefetch" href="/assets/js/10.4ccc3e50.js"><link rel="prefetch" href="/assets/js/11.a7061a7c.js"><link rel="prefetch" href="/assets/js/12.073d8aa8.js"><link rel="prefetch" href="/assets/js/13.f6f925d4.js"><link rel="prefetch" href="/assets/js/14.2f4eb21c.js"><link rel="prefetch" href="/assets/js/15.a7254d56.js"><link rel="prefetch" href="/assets/js/16.93137b07.js"><link rel="prefetch" href="/assets/js/17.1b1587fe.js"><link rel="prefetch" href="/assets/js/18.69690e86.js"><link rel="prefetch" href="/assets/js/19.b5874297.js"><link rel="prefetch" href="/assets/js/20.33ac6062.js"><link rel="prefetch" href="/assets/js/21.81e6addf.js"><link rel="prefetch" href="/assets/js/22.18e42532.js"><link rel="prefetch" href="/assets/js/24.3e47e82b.js"><link rel="prefetch" href="/assets/js/25.3df1c19a.js"><link rel="prefetch" href="/assets/js/26.f2de380b.js"><link rel="prefetch" href="/assets/js/27.a54f4108.js"><link rel="prefetch" href="/assets/js/28.6511c6bd.js"><link rel="prefetch" href="/assets/js/29.2a7000de.js"><link rel="prefetch" href="/assets/js/3.a0bfc7c0.js"><link rel="prefetch" href="/assets/js/30.2f37a740.js"><link rel="prefetch" href="/assets/js/31.a96f6c75.js"><link rel="prefetch" href="/assets/js/32.5d535d6f.js"><link rel="prefetch" href="/assets/js/33.43eb0731.js"><link rel="prefetch" href="/assets/js/34.9f63e17d.js"><link rel="prefetch" href="/assets/js/35.f369b661.js"><link rel="prefetch" href="/assets/js/36.505063eb.js"><link rel="prefetch" href="/assets/js/37.5169a095.js"><link rel="prefetch" href="/assets/js/38.5729cf95.js"><link rel="prefetch" href="/assets/js/39.be649b03.js"><link rel="prefetch" href="/assets/js/4.fc8f5016.js"><link rel="prefetch" href="/assets/js/40.1470d8e3.js"><link rel="prefetch" href="/assets/js/41.2b00b7e3.js"><link rel="prefetch" href="/assets/js/42.09f6186a.js"><link rel="prefetch" href="/assets/js/5.86e856fd.js"><link rel="prefetch" href="/assets/js/6.b86f3824.js"><link rel="prefetch" href="/assets/js/7.36463343.js"><link rel="prefetch" href="/assets/js/8.21262dd5.js"><link rel="prefetch" href="/assets/js/9.21c72270.js">
+	<link rel="stylesheet" href="/assets/css/0.styles.d272e33e.css">
+</head>
+
+<body>
+	<!-- 构建时基于 Vue SSR 的 HTML 模板文件。 -->
+	<div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="http://qiniu.gaowenju.com/bookc.png" alt="坑人的小书童" class="logo"> <span class="site-name can-hide">坑人的小书童</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="leetcode" class="dropdown-title"><span class="title">leetcode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/leetcode/202006/" class="nav-link router-link-active">
+  202006
+</a></li><li class="dropdown-item"><!----> <a href="/leetcode/202007/" class="nav-link">
+  202007
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="http://gaowenju.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://gitee.com/krdxst/oneday_oneleetcode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="leetcode" class="dropdown-title"><span class="title">leetcode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/leetcode/202006/" class="nav-link router-link-active">
+  202006
+</a></li><li class="dropdown-item"><!----> <a href="/leetcode/202007/" class="nav-link">
+  202007
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="http://gaowenju.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://gitee.com/krdxst/oneday_oneleetcode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>二叉树的序列化与反序列化</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/leetcode/202006/20200616.html#题目" class="sidebar-link">题目</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/leetcode/202006/20200616.html#示例" class="sidebar-link">示例</a></li><li class="sidebar-sub-header"><a href="/leetcode/202006/20200616.html#说明" class="sidebar-link">说明</a></li></ul></li><li><a href="/leetcode/202006/20200616.html#官方答案" class="sidebar-link">官方答案</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/leetcode/202006/20200616.html#深度优先搜索" class="sidebar-link">深度优先搜索</a></li></ul></li><li><a href="/leetcode/202006/20200616.html#其他解法" class="sidebar-link">其他解法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/leetcode/202006/20200616.html#bfs" class="sidebar-link">BFS</a></li></ul></li><li><a href="/leetcode/202006/20200616.html#菜鸟的自白" class="sidebar-link">菜鸟的自白</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="二叉树的序列化与反序列化"><a href="#二叉树的序列化与反序列化" class="header-anchor">#</a> 二叉树的序列化与反序列化</h3> <div class="custom-block tip"><p class="custom-block-title">难度</p> <p>困难</p></div> <p><img src="http://qiniu.gaowenju.com/leecode/banner/20200616.jpg" alt="img"></p> <h2 id="题目"><a href="#题目" class="header-anchor">#</a> <a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree" target="_blank" rel="noopener noreferrer">题目<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></h2> <p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，
+进而可以将转换后的数据存储在一个文件或者内存中，
+同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p> <p>请设计一个算法来实现二叉树的序列化与反序列化。
+这里不限定你的序列 / 反序列化算法执行逻辑，
+你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p> <h3 id="示例"><a href="#示例" class="header-anchor">#</a> 示例</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>你可以将以下二叉树：
+    1
+   / \
+  2   3
+     / \
+    4   5
+
+序列化为 &quot;[1,2,3,null,null,4,5]&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="说明"><a href="#说明" class="header-anchor">#</a> 说明</h3> <p>不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。</p> <h2 id="官方答案"><a href="#官方答案" class="header-anchor">#</a> <a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/solution/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua-by-le-2" target="_blank" rel="noopener noreferrer">官方答案<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></h2> <p>官方提供的解法暂无 javascript，根据官方逻辑使用 javascript 实现：</p> <h3 id="深度优先搜索"><a href="#深度优先搜索" class="header-anchor">#</a> 深度优先搜索</h3> <p>二叉树的序列化本质上是对其值进行编码，更重要的是对其结构进行编码。
+可以遍历树来完成上述任务。众所周知，我们一般有两个策略：BFS / DFS。</p> <ul><li>BFS 可以按照层次的顺序从上到下遍历所有的节点</li> <li>DFS 可以从一个根开始，一直延伸到某个叶，然后回到根，到达另一个分支。根据根节点、左节点和右节点之间的相对顺序，可以进一步将 DFS 策略区分为:
+<ul><li>先序遍历</li> <li>中序遍历</li> <li>后序遍历</li></ul></li></ul> <p><img src="http://qiniu.gaowenju.com/leecode/20200616.png" alt="img"></p> <p>TreeNode：val 当前指针指的值，left 上一个值，right 下一个值</p> <ul><li>val -&gt; 1 left -&gt; 2 right -&gt; 3</li> <li>val -&gt; 2 left -&gt; null right -&gt; null</li> <li>val -&gt; 3 left -&gt; 4 right -&gt; 5</li> <li>val -&gt; 4 left -&gt; null right -&gt; null</li> <li>val -&gt; 5 left -&gt; null ight -&gt; null</li></ul> <ol><li>TreeNode 序列化(TreeNode -&gt; String)</li></ol> <ul><li>任选一个字符可以得到其 left 和 right 则</li> <li>递归找到所有字符拼接成字符串</li></ul> <ol start="2"><li>字符串 反序列化(String -&gt; TreeNode)</li></ol> <ul><li>先讲字符串转换成数组</li> <li>遍历数组分别对没有下赋值 left 及 right</li></ul> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */</span>
+
+<span class="token comment">/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */</span>
+<span class="token keyword">var</span> <span class="token function-variable function">serialize</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> root<span class="token punctuation">.</span>val <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token string">'null,'</span>
+  <span class="token keyword">return</span> root<span class="token punctuation">.</span>val <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> <span class="token function">serialize</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">serialize</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */</span>
+<span class="token keyword">var</span> <span class="token function-variable function">deserialize</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">tree</span><span class="token punctuation">(</span><span class="token parameter">list</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> val <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">===</span> <span class="token string">'null'</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span>
+    <span class="token keyword">let</span> node <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+    node<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">tree</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+    node<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">tree</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> node
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> list <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">tree</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/**
+ * Your functions will be called as such:
+ * deserialize(serialize(root));
+ */</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><h2 id="其他解法"><a href="#其他解法" class="header-anchor">#</a> 其他解法</h2> <h3 id="bfs"><a href="#bfs" class="header-anchor">#</a> BFS</h3> <p>序列化 —— 常规的 BFS</p> <ul><li>null 节点也入列，说它是真实节点也行，它有对应的&quot;X&quot;，只是没有子节点入列</li> <li>考察出列节点
+<ul><li>如果不为 null，则将它的值推入 res 数组，并将它的左右子节点入列</li> <li>如果是 null 节点，则将 'X' 推入 res 数组</li></ul></li> <li>出列、入列，直到队列为空，所有节点遍历完，res 数组也构建完，转成字符</li></ul> <p>反序列化——也是 BFS，父节点出列，子节点入列</p> <ul><li>除了第一个 ROOT 值，其他节点值都成对出现，分别对应左右子节点</li> <li>我们从第二项开始遍历，每次考察两个节点值</li> <li>因为先生成的节点，会成为之后生成的节点的父亲，用一个 queue 暂存一下</li> <li>queue 初始放入根节点。父节点出列即考察它，新创建的子节点入列</li></ul> <p>同时考察父节点，和两个子节点值</p> <ul><li>出列的父节点，它对应到指针指向的左子节点值，和指针右边的右子节点值
+<ul><li>如果子节点值不为 'X' ，则为它创建节点，成为父节点的子节点，并作为未来的父节点入列</li> <li>如果子节点值为 'X'，什么都不做</li></ul></li> <li>所有父节点（真实节点）都会在 queue 里走一次</li></ul> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */</span>
+<span class="token keyword">var</span> <span class="token function-variable function">serialize</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> queue <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
+  <span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>queue<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> node <span class="token operator">=</span> queue<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 出列的节点 带出子节点入列</span>
+      res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+      queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token comment">// 不管是不是null节点都入列</span>
+      queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'X'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */</span>
+<span class="token keyword">var</span> <span class="token function-variable function">deserialize</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>data <span class="token operator">==</span> <span class="token string">'X'</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span> <span class="token comment">// 就一个'X'，只有一个null</span>
+  <span class="token keyword">const</span> list <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span> <span class="token comment">// 序列化字符串转成list数组</span>
+  <span class="token keyword">const</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">//首项是根节点值，为它创建节点</span>
+  <span class="token keyword">const</span> queue <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span> <span class="token comment">// 初始放入root，待会出列考察</span>
+  <span class="token keyword">let</span> cursor <span class="token operator">=</span> <span class="token number">1</span> <span class="token comment">// 从list第二项开始遍历</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>cursor <span class="token operator">&lt;</span> list<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 指针越界</span>
+    <span class="token keyword">const</span> node <span class="token operator">=</span> queue<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 父节点出列考察</span>
+    <span class="token keyword">const</span> leftVal <span class="token operator">=</span> list<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token comment">// 获取左子节点值</span>
+    <span class="token keyword">const</span> rightVal <span class="token operator">=</span> list<span class="token punctuation">[</span>cursor <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment">// 获取右子节点值</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>leftVal <span class="token operator">!==</span> <span class="token string">'X'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 左子节点值是有效值</span>
+      <span class="token keyword">const</span> leftNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>leftVal<span class="token punctuation">)</span> <span class="token comment">// 创建节点</span>
+      node<span class="token punctuation">.</span>left <span class="token operator">=</span> leftNode <span class="token comment">// 成为当前出列节点的左子节点</span>
+      queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>leftNode<span class="token punctuation">)</span> <span class="token comment">// 它是未来的爸爸，入列等待考察</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>rightVal <span class="token operator">!==</span> <span class="token string">'X'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 右子节点值是有效值</span>
+      <span class="token keyword">const</span> rightNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>rightVal<span class="token punctuation">)</span> <span class="token comment">// 创建节点</span>
+      node<span class="token punctuation">.</span>right <span class="token operator">=</span> rightNode <span class="token comment">// 成为当前出列节点的右子节点</span>
+      queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>rightNode<span class="token punctuation">)</span> <span class="token comment">// 它是未来的爸爸，入列等待考察</span>
+    <span class="token punctuation">}</span>
+    cursor <span class="token operator">+=</span> <span class="token number">2</span> <span class="token comment">// 指针前进2位</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> root <span class="token comment">// 返回根节点</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br></div></div><h2 id="菜鸟的自白"><a href="#菜鸟的自白" class="header-anchor">#</a> 菜鸟的自白</h2> <p>这道题本地调试有点曲折
+题目提示了：</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// Definition for a binary tree node.</span>
+<span class="token keyword">function</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val
+  <span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Your functions will be called as such:</span>
+<span class="token function">deserialize</span><span class="token punctuation">(</span><span class="token function">serialize</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>但是在本地调试的时候还是有点地方要修改的：</p> <ul><li>引入 TreeNode 函数</li> <li>反序列化需要传入序列化之后的数据，那本地先声明一个 reeNode 形式的序列化数据就太麻烦了</li> <li>serialize(deserialize('1,2,3,null,null,4,5'))</li> <li>反向调用先传入 String -&gt; Object -&gt; String 来验证逻辑</li></ul></div> <footer class="page-edit"><div class="edit-link"><a href="https://gitee.com/krdxst/oneday_oneleetcode/edit/page/leetcode/202006/20200616.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">3 hours ago</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+	<script src="/assets/js/app.83b8b455.js" defer></script><script src="/assets/js/2.f1097bd3.js" defer></script><script src="/assets/js/23.2b2c1ae5.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>模式匹配 | 坑人的小书童</title>
+	<meta name="generator" content="VuePress 1.5.2">
+	
+	<meta name="description" content="每天一道leetcode，从零开始学习算法 一天一大leet 小书童 坑人的小书童">
+	<link rel="preload" href="/assets/css/0.styles.d272e33e.css" as="style"><link rel="preload" href="/assets/js/app.83b8b455.js" as="script"><link rel="preload" href="/assets/js/2.f1097bd3.js" as="script"><link rel="preload" href="/assets/js/29.2a7000de.js" as="script"><link rel="prefetch" href="/assets/js/10.4ccc3e50.js"><link rel="prefetch" href="/assets/js/11.a7061a7c.js"><link rel="prefetch" href="/assets/js/12.073d8aa8.js"><link rel="prefetch" href="/assets/js/13.f6f925d4.js"><link rel="prefetch" href="/assets/js/14.2f4eb21c.js"><link rel="prefetch" href="/assets/js/15.a7254d56.js"><link rel="prefetch" href="/assets/js/16.93137b07.js"><link rel="prefetch" href="/assets/js/17.1b1587fe.js"><link rel="prefetch" href="/assets/js/18.69690e86.js"><link rel="prefetch" href="/assets/js/19.b5874297.js"><link rel="prefetch" href="/assets/js/20.33ac6062.js"><link rel="prefetch" href="/assets/js/21.81e6addf.js"><link rel="prefetch" href="/assets/js/22.18e42532.js"><link rel="prefetch" href="/assets/js/23.2b2c1ae5.js"><link rel="prefetch" href="/assets/js/24.3e47e82b.js"><link rel="prefetch" href="/assets/js/25.3df1c19a.js"><link rel="prefetch" href="/assets/js/26.f2de380b.js"><link rel="prefetch" href="/assets/js/27.a54f4108.js"><link rel="prefetch" href="/assets/js/28.6511c6bd.js"><link rel="prefetch" href="/assets/js/3.a0bfc7c0.js"><link rel="prefetch" href="/assets/js/30.2f37a740.js"><link rel="prefetch" href="/assets/js/31.a96f6c75.js"><link rel="prefetch" href="/assets/js/32.5d535d6f.js"><link rel="prefetch" href="/assets/js/33.43eb0731.js"><link rel="prefetch" href="/assets/js/34.9f63e17d.js"><link rel="prefetch" href="/assets/js/35.f369b661.js"><link rel="prefetch" href="/assets/js/36.505063eb.js"><link rel="prefetch" href="/assets/js/37.5169a095.js"><link rel="prefetch" href="/assets/js/38.5729cf95.js"><link rel="prefetch" href="/assets/js/39.be649b03.js"><link rel="prefetch" href="/assets/js/4.fc8f5016.js"><link rel="prefetch" href="/assets/js/40.1470d8e3.js"><link rel="prefetch" href="/assets/js/41.2b00b7e3.js"><link rel="prefetch" href="/assets/js/42.09f6186a.js"><link rel="prefetch" href="/assets/js/5.86e856fd.js"><link rel="prefetch" href="/assets/js/6.b86f3824.js"><link rel="prefetch" href="/assets/js/7.36463343.js"><link rel="prefetch" href="/assets/js/8.21262dd5.js"><link rel="prefetch" href="/assets/js/9.21c72270.js">
+	<link rel="stylesheet" href="/assets/css/0.styles.d272e33e.css">
+</head>
+
+<body>
+	<!-- 构建时基于 Vue SSR 的 HTML 模板文件。 -->
+	<div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="http://qiniu.gaowenju.com/bookc.png" alt="坑人的小书童" class="logo"> <span class="site-name can-hide">坑人的小书童</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="leetcode" class="dropdown-title"><span class="title">leetcode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/leetcode/202006/" class="nav-link router-link-active">
+  202006
+</a></li><li class="dropdown-item"><!----> <a href="/leetcode/202007/" class="nav-link">
+  202007
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="http://gaowenju.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://gitee.com/krdxst/oneday_oneleetcode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="leetcode" class="dropdown-title"><span class="title">leetcode</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/leetcode/202006/" class="nav-link router-link-active">
+  202006
+</a></li><li class="dropdown-item"><!----> <a href="/leetcode/202007/" class="nav-link">
+  202007
+</a></li></ul></div></div><div class="nav-item"><a href="/blog/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="http://gaowenju.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://gitee.com/krdxst/oneday_oneleetcode" target="_blank" rel="noopener noreferrer" class="repo-link">
+    查看源码
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>模式匹配</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/leetcode/202006/20200622.html#题目" class="sidebar-link">题目</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/leetcode/202006/20200622.html#示例" class="sidebar-link">示例</a></li><li class="sidebar-sub-header"><a href="/leetcode/202006/20200622.html#提示" class="sidebar-link">提示</a></li></ul></li><li><a href="/leetcode/202006/20200622.html#抛砖引玉" class="sidebar-link">抛砖引玉</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/leetcode/202006/20200622.html#特殊情况" class="sidebar-link">特殊情况</a></li><li class="sidebar-sub-header"><a href="/leetcode/202006/20200622.html#匹配" class="sidebar-link">匹配</a></li></ul></li><li><a href="/leetcode/202006/20200622.html#其他解法" class="sidebar-link">其他解法</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="模式匹配"><a href="#模式匹配" class="header-anchor">#</a> 模式匹配</h3> <div class="custom-block tip"><p class="custom-block-title">难度</p> <p>中等</p></div> <p><img src="http://qiniu.gaowenju.com/leecode/banner/20200622.jpg" alt="img"></p> <h2 id="题目"><a href="#题目" class="header-anchor">#</a> <a href="https://leetcode-cn.com/problems/pattern-matching-lcci" target="_blank" rel="noopener noreferrer">题目<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></h2> <p>你有两个字符串，即 pattern 和 value。 pattern 字符串由字母&quot;a&quot;和&quot;b&quot;组成，用于描述字符串中的模式。
+例如，字符串&quot;catcatgocatgo&quot;匹配模式&quot;aabab&quot;（其中&quot;cat&quot;是&quot;a&quot;，&quot;go&quot;是&quot;b&quot;），该字符串也匹配像&quot;a&quot;、&quot;ab&quot;和&quot;b&quot;这样的模式。
+但需注意&quot;a&quot;和&quot;b&quot;不能同时表示相同的字符串。编写一个方法判断 value 字符串是否匹配 pattern 字符串</p> <h3 id="示例"><a href="#示例" class="header-anchor">#</a> 示例</h3> <ul><li>示例 1</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入： pattern = &quot;abba&quot;, value = &quot;dogcatcatdog&quot;
+输出： true
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>示例 2</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入： pattern = &quot;abba&quot;, value = &quot;dogcatcatfish&quot;
+输出： false
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>示例 3</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入： pattern = &quot;aaaa&quot;, value = &quot;dogcatcatdog&quot;
+输出： false
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>示例 4</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>输入： pattern = &quot;abba&quot;, value = &quot;dogdogdogdog&quot;
+输出： true
+解释： &quot;a&quot;=&quot;dogdog&quot;,b=&quot;&quot;，反之也符合规则
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="提示"><a href="#提示" class="header-anchor">#</a> 提示</h3> <ul><li>0 &lt;= len(pattern) &lt;= 1000</li> <li>0 &lt;= len(value) &lt;= 1000</li> <li>你可以假设 pattern 只包含字母&quot;a&quot;和&quot;b&quot;，value 仅包含小写字母。</li></ul> <h2 id="抛砖引玉"><a href="#抛砖引玉" class="header-anchor">#</a> 抛砖引玉</h2> <p><img src="http://qiniu.gaowenju.com/leecode/20200622.png" alt="img"></p> <h3 id="特殊情况"><a href="#特殊情况" class="header-anchor">#</a> 特殊情况</h3> <ol><li>字符串为空且规则也为空 true</li> <li>字符串为空且规则包含一种字母(代表空)则 true，否则 false</li> <li>规则为空 字符串不为空 false</li></ol> <h3 id="匹配"><a href="#匹配" class="header-anchor">#</a> 匹配</h3> <p>选规则中至少出现一次的字符进行逐位匹配；
+匹配 a，
+其包含匹配的字符数递增（记录 a 匹配的字符 value_a 和 b 匹配的字符 value_b）
+如果 ab 匹配后字符数满足与 value 相同则返回 true，不然默认返回 false</p> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">/**
+ * @param {string} pattern
+ * @param {string} value
+ * @return {boolean}
+ */</span>
+<span class="token keyword">var</span> <span class="token function-variable function">patternMatching</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">pattern<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> pLen <span class="token operator">=</span> pattern<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+    vLen <span class="token operator">=</span> value<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+    count_a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 字符串中a的数量</span>
+    count_b <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment">// 字符串中b的数量</span>
+  <span class="token comment">// 如果字符串为空</span>
+  <span class="token comment">// 1. 规则也为空 true</span>
+  <span class="token comment">// 2. 规则不为空，只包含一种字母(代表空)则true，否则false</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>vLen <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pLen <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> pattern<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 规则为空 字符串不为空  false</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pLen <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> vLen <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span>
+
+  <span class="token comment">// 优化循环使用规则中较多的字符匹配，保证主动匹配的字符至少出现一次，统计字符数量</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> pLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      count_a<span class="token operator">++</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      count_b<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 使用指定字符a进行主动匹配，如果a少于b那主动把a、b字符对调，</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>count_a <span class="token operator">&lt;</span> count_b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> t <span class="token operator">=</span> count_a
+    count_a <span class="token operator">=</span> count_b
+    count_b <span class="token operator">=</span> t
+    <span class="token keyword">let</span> s <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> vLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        s <span class="token operator">+=</span> <span class="token string">'b'</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        s <span class="token operator">+=</span> <span class="token string">'a'</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    pattern <span class="token operator">=</span> s
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// a表示匹配字符a在字符串中代表的字符数，</span>
+  <span class="token comment">// n是剩余需要d匹配的字符</span>
+  <span class="token comment">// pos记录a字母在字符串中匹配的位置</span>
+  <span class="token comment">// value_a a匹配的字符串组</span>
+  <span class="token comment">// value_b b匹配的字符串组</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> count_a <span class="token operator">*</span> a <span class="token operator">&lt;=</span> vLen<span class="token punctuation">;</span> a<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> n <span class="token operator">=</span> vLen <span class="token operator">-</span> count_a <span class="token operator">*</span> a
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>count_b <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> n <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>count_b <span class="token operator">!==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> n <span class="token operator">%</span> count_b <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> b_len <span class="token operator">=</span> count_b <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>n <span class="token operator">/</span> count_b<span class="token punctuation">)</span>
+      <span class="token keyword">let</span> pos <span class="token operator">=</span> <span class="token number">0</span>
+      <span class="token keyword">let</span> sign <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">let</span> value_a <span class="token operator">=</span> <span class="token string">''</span>
+      <span class="token keyword">let</span> value_b <span class="token operator">=</span> <span class="token string">''</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> pLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> sub <span class="token operator">=</span> value<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>value_a<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value_a <span class="token operator">=</span> sub
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>value_a <span class="token operator">!==</span> sub<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            sign <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token keyword">break</span>
+          <span class="token punctuation">}</span>
+          pos <span class="token operator">+=</span> a
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> sub <span class="token operator">=</span> value<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> b_len<span class="token punctuation">)</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>value_b<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value_b <span class="token operator">=</span> sub
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>value_b <span class="token operator">!==</span> sub<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            sign <span class="token operator">=</span> <span class="token boolean">false</span>
+            <span class="token keyword">break</span>
+          <span class="token punctuation">}</span>
+          pos <span class="token operator">+=</span> b_len
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>sign <span class="token operator">&amp;&amp;</span> value_a <span class="token operator">!==</span> value_b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br></div></div><h2 id="其他解法"><a href="#其他解法" class="header-anchor">#</a> 其他解法</h2> <p>\1 和 \2 表示对前面分组的反向引用</p> <ul><li>aabb -&gt; (\w*)\1(\w*)\2</li> <li>abba -&gt; (\w*)(\w*)\2\1</li></ul> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">/**
+ * @param {string} pattern
+ * @param {string} value
+ * @return {boolean}
+ */</span>
+<span class="token keyword">var</span> <span class="token function-variable function">patternMatching</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">pattern<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern <span class="token operator">===</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value <span class="token operator">===</span> <span class="token string">''</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> group <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token string">''</span>
+  <span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token string">''</span>
+  <span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token string">''</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> char <span class="token keyword">of</span> pattern<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        reg <span class="token operator">+=</span> a
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        reg <span class="token operator">+=</span> <span class="token string">'(\\w*)'</span>
+        a <span class="token operator">=</span> <span class="token string">'\\'</span> <span class="token operator">+</span> group<span class="token operator">++</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'b'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        reg <span class="token operator">+=</span> b
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        reg <span class="token operator">+=</span> <span class="token string">'(\\w*)'</span>
+        b <span class="token operator">=</span> <span class="token string">'\\'</span> <span class="token operator">+</span> group<span class="token operator">++</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> match <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">'^'</span> <span class="token operator">+</span> reg <span class="token operator">+</span> <span class="token string">'$'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">Boolean</span><span class="token punctuation">(</span>match<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> match<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!==</span> match<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://gitee.com/krdxst/oneday_oneleetcode/edit/page/leetcode/202006/20200622.md" target="_blank" rel="noopener noreferrer">帮助我们改善此页面！</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">3 hours ago</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+	<script src="/assets/js/app.83b8b455.js" defer></script><script src="/assets/js/2.f1097bd3.js" defer></script><script src="/assets/js/29.2a7000de.js" defer></script>
+</body>
+
+</html>
