@@ -23,9 +23,6 @@ module.exports = {
 	],
 	themeConfig: {
 		logo: 'http://qiniu.gaowenju.com/bookc.png',
-		repo: 'https://gitee.com/krdxst/oneday_oneleetcode',
-		repoLabel: '查看源码',
-		editLinkText: '帮助我们改善此页面！',
 		editLinks: true,
 		docsBranch: 'page',
 		sidebarDepth: 2,
