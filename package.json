@@ -1,0 +1,12 @@
+{
+	"scripts": {
+		"dev": "vuepress dev oneday_oneleetcode",
+		"build": "vuepress build oneday_oneleetcode"
+	},
+	"devDependencies": {
+		"@vuepress/plugin-back-to-top": "^1.5.2",
+		"@vuepress/plugin-medium-zoom": "^1.5.2",
+		"moment": "^2.27.0",
+		"vuepress": "^1.5.2"
+	}
+}

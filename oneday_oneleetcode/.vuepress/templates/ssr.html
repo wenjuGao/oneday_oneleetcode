@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="icon" href="http://qiniu.gaowenju.com/favicon.png">
+	<title>{{ title }}</title>
+	<meta name="generator" content="VuePress {{ version }}">
+	{{{ userHeadTags }}}
+	{{{ pageMeta }}}
+	{{{ renderResourceHints() }}}
+	{{{ renderStyles() }}}
+</head>
+
+<body>
+	<!-- 构建时基于 Vue SSR 的 HTML 模板文件。 -->
+	<!--vue-ssr-outlet-->
+	{{{ renderScripts() }}}
+</body>
+
+</html>
