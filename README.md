@@ -9,8 +9,10 @@
 - 总结归纳
   补充各种算法理论知识，做一个懂算法的切图仔
 
-欢迎[issue](https://gitee.com/krdxst/oneday_oneleetcode/issues/new),留下指正或者意见，如果对你有帮助也欢迎 start
+欢迎[issue](https://gitee.com/krdxst/oneday_oneleetcode/issues/new),留下指正或者意见，如果对你有帮助也欢迎 start，另外每天的答题和题解也会更新到公众号中，也欢迎关注公众号，大家一起刷题打卡。
 
 博客: [小书童博客](http://gaowenju.com/)
 
 公号: 坑人的小书童
+
+![坑人的小书童](http://qiniu.gaowenju.com/qrcode.jpg)
