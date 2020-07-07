@@ -52,9 +52,9 @@ sidebar: auto
 ### 截取比较
 
 - 首先想到的是遍历字符串
-- 逐个找到以每个字符串(开始索引 i)开始向后查找
-- 遇到重复的字符(结束索引 end)记录查找长度(end-i+1)
-- 重置开始索引到 i+1
+- 逐个找到以每个字符串(开始索引 start)开始向后查找
+- 遇到重复的字符(结束索引 end)记录查找长度(end-start+1)
+- 重置开始索引到 start+1
 
 ```javascript
 /**
@@ -64,15 +64,15 @@ sidebar: auto
 var lengthOfLongestSubstring = function (s) {
   let end = -1,
     _result = 0
-  for (let i = 0; i < s.length; i++) {
+  for (let start = 0; start < s.length; start++) {
     while (end + 1 < s.length) {
-      if (s.substring(i, end + 1).includes(s[end + 1])) {
+      if (s.substring(start, end + 1).includes(s[end + 1])) {
         break
       } else {
         end++
       }
     }
-    _result = Math.max(_result, end - i + 1)
+    _result = Math.max(_result, end - start + 1)
   }
   return _result
 }
@@ -100,25 +100,29 @@ var lengthOfLongestSubstring = function (s) {
   let _result = 0,
     end = -1,
     map = new Map()
-  for (let i = 0; i < s.length; i++) {
+  for (let start = 0; start < s.length; start++) {
     while (end + 1 < s.length) {
       if (map.has(s[end + 1])) {
-        map.delete(s[i])
+        map.delete(s[start])
         break
       } else {
         map.set(s[end + 1], true)
         end++
       }
     }
-    _result = Math.max(_result, end - i + 1)
+    _result = Math.max(_result, end - start + 1)
   }
   return _result
 }
 ```
 
-### 存储索引
+### 存储长度
 
-（上面方法的 end，i 是截取字符串的双指针）
+上面方法的 start,end 是截取字符串的双指针,
+重新声明 i，num：
+
+1. i：递增指针
+2. num：指针只在 i 时，之前不重复字符片段长度
 
 - 既然我们都已经可以循环存储字符串了，那如 map 中存放的是之前存储的不重复判断的数量
 - 通过 map 的 key 判断字符是否重复
@@ -132,21 +136,24 @@ var lengthOfLongestSubstring = function (s) {
  */
 var lengthOfLongestSubstring = function (s) {
   let map = new Map(),
-    max = 0
-  for (let i = 0, j = 0; j < s.length; j++) {
-    if (map.has(s[j])) {
-      i = Math.max(map.get(s[j]) + 1, i)
+    _result = 0,
+    num = 0
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s[i])) {
+      num = Math.max(map.get(s[i]) + 1, num)
     }
-    max = Math.max(max, j - i + 1)
-    map.set(s[j], j)
+    _result = Math.max(_result, i - num + 1)
+    map.set(s[i], i)
   }
-  return max
+  return _result
 }
 ```
 
 ## [官方答案:](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/wu-zhong-fu-zi-fu-de-zui-chang-zi-chuan-by-leetc-2/)
 
 ### 滑动窗口
+
+与上面 map 方法类似，是 set 的哈希来判断字符是否重复
 
 ```javascript
 /**
@@ -180,6 +187,7 @@ var lengthOfLongestSubstring = function (s) {
 ## 其他解法
 
 - 借助 indexOf 来替换内层的 while 循环来找到
+- indexOf 查询到重复位置重置 start-end 的字符窗口
 
 ```javascript
 /**
