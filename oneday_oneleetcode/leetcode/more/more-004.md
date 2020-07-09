@@ -142,6 +142,7 @@ sidebar: auto
 则打开索引：4位置的水龙头
 
 
+
 ```javascript
 /**
  * @param {number} n
