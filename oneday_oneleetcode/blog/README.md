@@ -1,1 +1,49 @@
-### blog
+---
+sidebar: false
+---
+
+### 汇总
+
+#### [常用算法](./algorithm/)
+
+- [动态规划](./dongtai.md)
+- [数组](./arr.md)
+- [动态规划](./dp.md)
+- [字符串](./str.md)
+- [数学](./num.md)
+- [树](./tree.md)
+- [深度优先搜索](./search.md)
+- [哈希表](./hash.md)
+- [二分查找](./two.md)
+- [贪心算法](./tanxin.md)
+- [广度优先搜索](./gd.md)
+- [双指针](./szz.md)
+- [栈](./zhan.md)
+- [位运算](./wei.md)
+- [排序](./sort.md)
+- [回溯算法](./huisu.md)
+- [设计](./sheji.md)
+- [链表](./lian.md)
+- [图](./pic.md)
+- [堆](./dui.md)
+- [并查集](./bing.md)
+- [Sliding Window](./window.md)
+- [分治算法](./fen.md)
+- [递归](./digui.md)
+- [字典树](./dictree.md)
+- [线段树](./xaintree.md)
+- [几何](./geo.md)
+- [队列](./dui.md)
+- [Ordered Map](./map.md)
+- [极小化极大](./minMax.md)
+- [树状数组](./treeArr.md)
+- [脑筋急转弯](./nj.md)
+- [Line Sweep](./sweep.md)
+- [Random](./random.md)
+- [拓扑排序](./tp.md)
+- [二叉搜索树](./tsearch.md)
+- [记忆化](./mem.md)
+- [Rejection Sampling](./samp.md)
+- [蓄水池抽样](./water.md)
+
+#### [类似题目汇编](./similar/)

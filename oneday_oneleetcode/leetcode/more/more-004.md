@@ -182,10 +182,15 @@ var minTaps = function (n, ranges) {
 }
 ```
 
+::: tip 总结
+一个点代表一个范围，遍历是大范围取代小范围，最后用大范围翻盖目标范围
+需要的范围数就是结果
+:::
+
 ## [官方答案](https://leetcode-cn.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/solution/guan-gai-hua-yuan-de-zui-shao-shui-long-tou-shu-3/)
 
-
 ### 动态规划
+
 ```javascript
 /**
  * @param {number} n
@@ -194,31 +199,36 @@ var minTaps = function (n, ranges) {
  */
 var minTaps = function (n, ranges) {
   let len = ranges.length,
-      prev = [];
-  for (let i = 0; i < n+1; i++) {
-      prev[i] = i;
+    prev = []
+  // 声明一个长n的数组，元素用索引递增，标识当前水龙头起点
+  for (let i = 0; i < n + 1; i++) {
+    prev[i] = i
   }
-  for (let i = 0; i < n+1; i++) {
-      let left = Math.max(i - ranges[i], 0);
-      let right = Math.min(i + ranges[i], n);
-      prev[right] = Math.min(prev[right], left);
+  for (let i = 0; i < n + 1; i++) {
+    // 覆盖范围最小值
+    let left = Math.max(i - ranges[i], 0)
+    // 覆盖范围最大值
+    let right = Math.min(i + ranges[i], n)
+    // 记录区间，最大值做索引 最小值做值
+    prev[right] = Math.min(prev[right], left)
   }
   let _result = 0,
-      BIG = Number.MAX_VALUE,
-      dp = [0,...Array(n).fill(BIG)];
+    BIG = Number.MAX_VALUE,
+    dp = [0, ...Array(n).fill(BIG)]
 
-  for (let i = 1; i < n+1 ; i++) {
-     for(let j = prev[i];j<i;j++){
-       if(dp[j]!== BIG){
-         dp[i] = Math.min(dp[i],dp[j]+1);
-       }
-     }
+  for (let i = 1; i < n + 1; i++) {
+    for (let j = prev[i]; j < i; j++) {
+      if (dp[j] !== BIG) {
+        dp[i] = Math.min(dp[i], dp[j] + 1)
+      }
+    }
   }
-  return dp[n] === BIG ? -1 :dp[n];
+  return dp[n] === BIG ? -1 : dp[n]
 }
 ```
 
 ### 贪心算法
+
 ```javascript
 /**
  * @param {number} n
@@ -227,27 +237,27 @@ var minTaps = function (n, ranges) {
  */
 var minTaps = function (n, ranges) {
   let len = ranges.length,
-      prev = [];
-  for (let i = 0; i < n+1; i++) {
-      prev[i] = i;
+    prev = []
+  for (let i = 0; i < n + 1; i++) {
+    prev[i] = i
   }
-  for (let i = 0; i < n+1; i++) {
-      let left = Math.max(i - ranges[i], 0);
-      let right = Math.min(i + ranges[i], n);
-      prev[right] = Math.min(prev[right], left);
+  for (let i = 0; i < n + 1; i++) {
+    let left = Math.max(i - ranges[i], 0)
+    let right = Math.min(i + ranges[i], n)
+    prev[right] = Math.min(prev[right], left)
   }
   let _result = 0,
-      middle = n,
-      BIG = Number.MAX_VALUE;
-  for (let i = n; i > 0 ; i--) {
-      BIG = Math.min(BIG,prev[i])
-      if (i === middle) {
-          if(BIG >= i) return -1
-          middle = BIG;
-          _result++
-      }
+    middle = n,
+    BIG = Number.MAX_VALUE
+  for (let i = n; i > 0; i--) {
+    BIG = Math.min(BIG, prev[i])
+    if (i === middle) {
+      if (BIG >= i) return -1
+      middle = BIG
+      _result++
+    }
   }
-  return _result;
+  return _result
 }
 ```
 
@@ -261,20 +271,20 @@ var minTaps = function (n, ranges) {
  */
 var minTaps = function (n, ranges) {
   for (let i = 0; i < ranges.length; ++i) {
-    let left = i - ranges[i] > 0 ? i - ranges[i] : 0;
-    let right = i + ranges[i] < n ? i + ranges[i] : n;
-    right > ranges[left] && (ranges[left] = right);
+    let left = i - ranges[i] > 0 ? i - ranges[i] : 0
+    let right = i + ranges[i] < n ? i + ranges[i] : n
+    right > ranges[left] && (ranges[left] = right)
   }
-  let _result = 1;
-  let item = next = ranges[0];
+  let _result = 1
+  let item = (next = ranges[0])
   for (let i = 1; i < ranges.length; ++i) {
-    if (i > next) return -1;
-    if (i > item) { 
-      item = next; 
-      _result++;
+    if (i > next) return -1
+    if (i > item) {
+      item = next
+      _result++
     }
-    next = Math.max(next,ranges[i])
+    next = Math.max(next, ranges[i])
   }
-  return _result;
+  return _result
 }
 ```
