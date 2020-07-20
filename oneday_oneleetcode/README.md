@@ -17,6 +17,8 @@ footer: MIT Licensed | Copyright © 2020-present 坑人的小书童
 
 博客: [小书童博客](http://gaowenju.com/)
 
+每天的每日一天，写的题解会同步更新到公众号一天一大 lee 栏目
+
 公号: 坑人的小书童
 
-![坑人的小书童](http://qiniu.gaowenju.com/qrcode.jpg)
+![坑人的小书童](http://qiniu.gaowenju.com/wechat.png)
