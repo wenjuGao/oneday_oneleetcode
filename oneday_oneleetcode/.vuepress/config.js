@@ -41,6 +41,12 @@ module.exports = {
 			}, {
 				text: '202007',
 				link: '/leetcode/202007/'
+			}, {
+				text: '202008',
+				link: '/leetcode/202008/'
+			}, {
+				text: 'more',
+				link: '/leetcode/more/'
 			}]
 		},
 		{
