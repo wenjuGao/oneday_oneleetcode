@@ -76,3 +76,52 @@ var rob = function (nums) {
   return y
 }
 ```
+
+### 动态规划
+
+上面解法抽象前置点为了x，y两个，更加直观的可以针对任意一个元素记录数组从0到其的最终结果即：
+- 对于i，dp[i],表示0-i间隔累加的最大值
+- i增加是其的结果等于有两种情况：
+  - 其计入累加则i-1一定没有计算,dp[i] = dp[i-2]+nums[i]
+  - 没有计算，则结果应该和上一次一样，dp[i] = dp[i-1]
+- 两次取最大值
+
+---
+
+数据推导规则：
+- i = 0，dp[0] = Math.max(nums[0],0)
+- i = 1，dp[1] = Math.max(nums[0],nums[1])
+- i = 2，dp[2] = Math.max(nums[0]+nums[2],nums[1])
+- i = 3，dp[3] = Math.max(nums[0]+nums[2],nums[1]+nums[3],nums[0]+nums[3])
+- ...
+
+- 可以发现dp[0]参与到dp[1]的计算中时：dp[1] = Math.max(dp[0],nums[1])
+- 可以发现dp[1]参与到dp[2]的计算中时：
+  - dp[0] = nums[0]
+  - nums[1] > nums[0] -> dp[1] = nums[1]
+  - nums[1] < nums[0] -> dp[1] = nums[0]
+  - dp[2] = Math.max(dp[0]+nums[2],dp[1])
+- 可以发现dp[2]参与到dp[3]的计算中时：
+  - nums[1] > nums[0]+nums[2] -> dp[1]+nums[3] > dp[2]
+  - nums[1] < nums[0]+nums[2] -> dp[2] = nums[0]+nums[2]
+  - dp[3] = Math.max(dp[1]+nums[3],dp[2])
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function (nums) {
+  // 特殊情况，当数组长度小于3时，返回所有元素中最大的元素
+  if (nums.length < 3) return Math.max(...nums, 0)
+  let len = nums.length,
+    dp = Array(len);
+  dp[0] = nums[0];
+  dp[1] = Math.max(nums[0],nums[1]);
+
+  for (let i = 2; i < len; i++) {
+    dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1]);
+  }
+  return dp[len-1]
+}
+```

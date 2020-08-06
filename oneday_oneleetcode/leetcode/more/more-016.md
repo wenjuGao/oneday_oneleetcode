@@ -40,12 +40,43 @@ sidebar: auto
 
 ![img](http://qiniu.gaowenju.com/leecode/more-016.png)
 
+**思路**
+
+相较于[more-015: 打家劫舍 (难度:简单)](./more-015.md)多了一个限制条件首位字符算作相邻，
+那么我们需要多做的就是知道上面题解中在什么条件下同时累加了首位和末尾，排除这种情况就好。
+
+- 最简单的思路就是分别在数组就去掉首位数据计算求最大值
+
 ```javascript
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var rob = function(nums) {
+  if (nums.length < 3) return Math.max(...nums, 0)
 
+  // 去投去尾计算值
+  let noStart = dfs(nums.slice(1)),
+    noEnd = dfs(nums.slice(0, nums.length - 1))
+
+  // 查询逻辑与打家劫舍 (难度:简单)一致
+  function dfs(nums) {
+    if (nums.length < 3) return Math.max(...nums, 0)
+    let len = nums.length,
+      dp = Array(len);
+    dp[0] = nums[0];
+    dp[1] = Math.max(nums[0], nums[1]);
+
+    for (let i = 2; i < len; i++) {
+      dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+    }
+    return dp[len - 1]
+  }
+
+  return Math.max(noStart, noEnd)
 };
 ```
+
+另外一种思路，可以通过声明两个指针来限定累加的范围，最终返回0-len-2，与1-len-1的最大值
+
+
