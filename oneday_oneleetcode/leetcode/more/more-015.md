@@ -21,7 +21,8 @@ sidebar: auto
 
 ### 示例
 
-1. 示例1
+1. 示例 1
+
 ```
 输入：[1,2,3,1]
 输出：4
@@ -29,7 +30,8 @@ sidebar: auto
      偷窃到的最高金额 = 1 + 3 = 4 。
 ```
 
-2. 示例2
+2. 示例 2
+
 ```
 输入：[2,7,9,3,1]
 输出：12
@@ -46,24 +48,31 @@ sidebar: auto
 
 ![img](http://qiniu.gaowenju.com/leecode/more-015.png)
 
-- 一维的数组计算间隔元素相加就是奇偶索引位数据的相加
-- 一次循环奇偶索引位数分别相加，返回较大的结果
+- 一维的数组计算间隔元素相加,间隔元素数大于 0
+- 任选一个元素，对其就有两种选择，设其前置已累加结果为 y：
+  - 前面累计的和的最后元素与其相邻不能计算，则其结果保持为：x
+  - 前面累计的和的最后元素与其不相邻能计算，则其结果保持为：y+nums[i]
+  - 累计到 i 是结果为：Math.max(x,y+nums[i]);
 
 ```javascript
 /**
  * @param {number[]} nums
  * @return {number}
  */
-var rob = function(nums) {
-let odd = 0,
-    even - 0;
-    for(let i = 0;i<nums.length;i++){
-      if(i%2) {
-        add+=nums[i]
-      }else{
-        even += nums[i]
-      }
-    }
-    return Math.max(add,even)
-};
+var rob = function (nums) {
+  // 特殊情况，当数组长度小于3时，返回所有元素中最大的元素
+  if (nums.length < 3) return Math.max(...nums, 0)
+  let len = nums.length,
+    x = nums[0],
+    y = Math.max(nums[1], nums[0])
+
+  for (let i = 2; i < len; i++) {
+    let perv = y
+    // 累加到i位置（不一定包含i）的最大结果
+    y = Math.max(x + nums[i], y)
+    // 不包含i元素的最大结果
+    x = perv
+  }
+  return y
+}
 ```
