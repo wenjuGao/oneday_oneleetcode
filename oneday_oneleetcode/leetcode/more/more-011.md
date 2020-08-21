@@ -38,8 +38,8 @@ sidebar: auto
 
 - 记录 T 中每个字符及其出现的次数：map-key-num
 - 声明两个指针 left，right 截取 S,（right-left >= t.length）
-- 验证 left 到 right 中 字符种类包含t中的字符种类及每种的数量：
-  - map-size字符种类
+- 验证 left 到 right 中 字符种类包含 t 中的字符种类及每种的数量：
+  - map-size 字符种类
   - map-value 字符数量
 
 ---
@@ -48,13 +48,12 @@ sidebar: auto
 
 - 初始 left，right 区间包含 0 个字符，map 为 T 的全映射
 - left，right 交替向后移动
-  - right右移，left-right区间扩大，新加入字符x
-    - x在t中且，则匹配，map记录待匹配的字符数减1
-    - 如果x在t中只出现一次，即减一后map-value等于0，则记录已匹配种类加1
-  - left右移(在right移动第一次满足条件后就执行)，移除字符y
-    - y在t中，则待匹配字符加1
-    - 如果y在t中且待匹配(value>0),则已匹配种类减1
-
+  - right 右移，left-right 区间扩大，新加入字符 x
+    - x 在 t 中且，则匹配，map 记录待匹配的字符数减 1
+    - 如果 x 在 t 中只出现一次，即减一后 map-value 等于 0，则记录已匹配种类加 1
+  - left 右移(在 right 移动第一次满足条件后就执行)，移除字符 y
+    - y 在 t 中，则待匹配字符加 1
+    - 如果 y 在 t 中且待匹配(value>0),则已匹配种类减 1
 
 ```javascript
 /**
@@ -62,27 +61,26 @@ sidebar: auto
  * @param {string} t
  * @return {string}
  */
-var minWindow = function(s, t) {
+var minWindow = function (s, t) {
   let left = 0,
-      right = 0,
-      slen = s.length,
-      tlen = t.length,
-      Rleft = -Number.MAX_VALUE, // 结果区间的left索引
-      Rright = -1, // 结果区间的right索引
-      type = 0, // 区间已匹配的字符种类数
-      map = new Map()
+    right = 0,
+    slen = s.length,
+    tlen = t.length,
+    Rleft = -Number.MAX_VALUE, // 结果区间的left索引
+    Rright = -1, // 结果区间的right索引
+    type = 0, // 区间已匹配的字符种类数
+    map = new Map()
 
-  if (slen === 0 || tlen === 0 || slen < tlen ) return ''
+  if (slen === 0 || tlen === 0 || slen < tlen) return ''
 
   // 使用map映射T中的字符及其出现的次数，给区间匹配
   for (let i of t) {
-    map.set(i, map.has(i) ? map.get(i)+1 : 1)
+    map.set(i, map.has(i) ? map.get(i) + 1 : 1)
   }
   // 交替切换left-right在s中生产选区
   while (right < slen) {
-    
     let Rstr = s.charAt(right), // 指针所在的字符
-        Rvalue = map.get(Rstr)   // 指针所在字符在t-map中的计算
+      Rvalue = map.get(Rstr) // 指针所在字符在t-map中的计算
 
     // 新加入的字符在t中，则待匹配的map对应字符数减1
     if (map.has(Rstr)) map.set(Rstr, --Rvalue)
@@ -93,10 +91,10 @@ var minWindow = function(s, t) {
     // 已匹配字符种类等于map-size 所有种类均匹配完成
     while (type === map.size) {
       let Lstr = s.charAt(left),
-          Lvalue = map.get(Lstr)
+        Lvalue = map.get(Lstr)
 
       // 如果新的区间比较小则使用新区间
-      if (right - left  < Rright - Rleft) {
+      if (right - left < Rright - Rleft) {
         Rleft = left
         Rright = right
       }
@@ -111,12 +109,10 @@ var minWindow = function(s, t) {
       left++
     }
 
-
     // 右区间向右移动
     right++
-    
   }
 
-  return s.substring(Rleft, Rright+1)
-};
+  return s.substring(Rleft, Rright + 1)
+}
 ```

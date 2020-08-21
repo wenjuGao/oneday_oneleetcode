@@ -11,7 +11,7 @@ sidebar: auto
 困难
 :::
 
-![img](http://qiniu.gaowenju.com/leecode/banner/more-005.jpg)
+![img](http://qiniu.gaowenju.com/leecode/banner/more-007.jpg)
 
 ## [题目:](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)
 
@@ -23,7 +23,8 @@ sidebar: auto
 
 ### 示例
 
-1. 示例1
+1. 示例 1
+
 ```
 输入: [3,3,5,0,0,3,1,4]
 输出: 6
@@ -31,32 +32,32 @@ sidebar: auto
      随后，在第 7 天（股票价格 = 1）的时候买入，在第 8 天 （股票价格 = 4）的时候卖出，这笔交易所能获得利润 = 4-1 = 3 。
 ```
 
-2. 示例2
+2. 示例 2
+
 ```
 输入: [1,2,3,4,5]
 输出: 4
-解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。   
-     注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。   
+解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。  
+     注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。  
      因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。
 ```
 
-3. 示例3
+3. 示例 3
+
 ```
-输入: [7,6,4,3,1] 
-输出: 0 
+输入: [7,6,4,3,1]
+输出: 0
 解释: 在这个情况下, 没有交易完成, 所以最大利润为 0。
 ```
 
 ## 抛砖引玉
 
-![img](http://qiniu.gaowenju.com/leecode/more-005.png)
+![img](http://qiniu.gaowenju.com/leecode/more-007.png)
 
 ```javascript
 /**
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-
-};
+var maxProfit = function (prices) {}
 ```

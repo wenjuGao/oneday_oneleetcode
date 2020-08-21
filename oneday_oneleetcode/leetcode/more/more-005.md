@@ -62,14 +62,36 @@ var maxProfit = function (prices) {
     y = 0
   for (let i = 0; i < prices.length; i++) {
     if (prices[i] < x) {
+      // 更新最小购入价格
       x = prices[i]
     } else if (prices[i] - x > y) {
+      // 如果购入价格不变，检查今天卖出利润是否增加，如果增加更新利润
+      // 注意：此时x为上次更新的最小购入价格
       y = prices[i] - x
     }
   }
   return y
 }
 ```
+
+### 单调栈
+
+上面一遍循环维护当亲最小值和最大利润，已经满足要求了，看了别的大佬的题解:
+
+[C++ 利用哨兵 👨‍✈️，维护一个单调栈 📈(图解，直观掌握)](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/c-li-yong-shao-bing-wei-hu-yi-ge-dan-diao-zhan-tu-/)
+
+本题逻辑还是比较简单，刚好借助熟悉下单调栈的使用。
+
+声明一个数组 stack，遵循先进后出原则
+
+用单调栈，维护一个栈存 stack 放已经出现过的价格，用栈顶来记录(或者守卫)遇到的最小买入价格：
+
+- 新入栈的价格如果小于栈顶最小结果，则：
+
+  - 记录替换前栈顶与其他栈内元素的最大差值,既原最小价格买入时最大利润
+  - 替换栈顶
+
+- 新入栈的价格如果大于栈顶最小结果，则直接入栈
 
 ```javascript
 /**
@@ -79,19 +101,16 @@ var maxProfit = function (prices) {
 var maxProfit = function (prices) {
   let len = prices.length,
     stack = [],
-    _result = 0,
-    prices2 = Array(len + 1)
-  for (let i = 0; i < len; i++) {
-    prices2[i] = prices[i]
-  }
-  prices2[prices.length] = -1
-  for (let i = 0; i < prices2.length; i++) {
-    while (!stack.length && stack[0] >= prices2[i]) {
-      let top = stack.pop()
-      if (stack.length) continue
-      _result = Math.max(_result, top - stack[stack.length-1]]) // 出栈时栈顶减去栈底元素
+    _result = 0
+
+  prices.push(-1)
+
+  for (let i = 0; i < len + 1; i++) {
+    while (stack.length && stack[stack.length - 1] >= prices[i]) {
+      _result = Math.max(_result, stack[stack.length - 1] - stack[0])
+      stack.pop()
     }
-    stack.push(prices2[i])
+    stack.push(prices[i])
   }
   return _result
 }
