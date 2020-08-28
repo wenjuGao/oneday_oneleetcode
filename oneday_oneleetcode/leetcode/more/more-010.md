@@ -1,52 +1,63 @@
 ---
-title: 股票的最大利润
+title: 岛屿数量
 tags:
-  - 股票的最大利润
+  - 岛屿数量
 sidebar: auto
 ---
 
-### 股票的最大利润
+### 岛屿数量
 
 ::: tip 难度
 中等
 :::
 
-![img](http://qiniu.gaowenju.com/leecode/banner/more-005.jpg)
+![img](http://qiniu.gaowenju.com/leecode/banner/more-010.jpg)
 
-## [题目:](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+## [题目:](https://leetcode-cn.com/problems/number-of-islands/)
 
-假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
+给你一个由  '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+
+岛屿总是被水包围，并且每座岛屿只能由水平方向或竖直方向上相邻的陆地连接形成。
+
+此外，你可以假设该网格的四条边均被水包围。
 
 ### 示例
 
-1. 示例1
+1. 示例 1
+
 ```
-输入: [7,1,5,3,6,4]
-输出: 5
-解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
-     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
-```
-2. 示例2
-```
-输入: [7,6,4,3,1]
-输出: 0
-解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+输入:
+[
+['1','1','1','1','0'],
+['1','1','0','1','0'],
+['1','1','0','0','0'],
+['0','0','0','0','0']
+]
+输出: 1
 ```
 
-### 限制
+2. 示例 2
 
-0 <= 数组长度 <= $10^5$
+```
+输入:
+[
+['1','1','0','0','0'],
+['1','1','0','0','0'],
+['0','0','1','0','0'],
+['0','0','0','1','1']
+]
+输出: 3
+解释: 每座岛屿只能由水平和/或竖直方向上相邻的陆地连接而成。
+```
 
 ## 抛砖引玉
 
-![img](http://qiniu.gaowenju.com/leecode/more-005.png)
+![img](http://qiniu.gaowenju.com/leecode/more-010.png)
 
 ```javascript
 /**
- * @param {number[]} prices
+ * @param {character[][]} grid
  * @return {number}
  */
-var maxProfit = function(prices) {
-
-};
+var numIslands = function (grid) {}
 ```

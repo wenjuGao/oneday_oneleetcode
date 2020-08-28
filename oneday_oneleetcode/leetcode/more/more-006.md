@@ -59,7 +59,7 @@ sidebar: auto
 
 ![img](http://qiniu.gaowenju.com/leecode/more-006.png)
 
-上面一题[买卖股票的最佳时机](./more-005.md)，限制了只允许交易异常，本题交易次数可以任意
+上面一题[买卖股票的最佳时机](./more-005.md)，限制了只允许交易一次，本题交易次数可以任意
 
 - 那么多次交易会对原来的逻辑又什么影响呢？
 
@@ -80,7 +80,7 @@ sidebar: auto
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices, s) {
+var maxProfit = function (prices) {
   let y = 0
   for (let i = 0; i < prices.length - 1; i++) {
     // 下一个结果高于当前价格就在当前买入，下个点卖出
@@ -113,7 +113,7 @@ var maxProfit = function (prices, s) {
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices, s) {
+var maxProfit = function (prices) {
   let len = prices.length
   if (len < 2) return 0
 
