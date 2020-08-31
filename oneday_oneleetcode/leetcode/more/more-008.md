@@ -91,7 +91,7 @@ var maxProfit = function (prices, k) {
   let len = prices.length
   if (len == 0) return 0
   // k过大处理prices
-  if (k > parseInt(len / 2, 10)) maxProfitInfinity(prices)
+  if (k >= parseInt(len / 2, 10)) return maxProfitInfinity(prices)
 
   let dp = Array.from({ length: len }, () => Array(k + 1))
   for (let i = 0; i < len; i++) {
@@ -120,17 +120,6 @@ var maxProfit = function (prices, k) {
       }
     }
     return y
-    // let dp = Array.from(new Array(n), () => new Array(2))
-    // for (let i = 0; i < n; i++) {
-    //   if (i == 0) {
-    //     dp[0][0] = 0
-    //     dp[0][1] = -prices[0]
-    //     continue
-    //   }
-    //   dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i])
-    //   dp[i][1] = Math.max(dp[i - 1][0] - prices[i], dp[i - 1][1])
-    // }
-    // return dp[n - 1][0]
   }
 
   // 返回结果

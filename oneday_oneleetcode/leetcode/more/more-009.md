@@ -53,5 +53,34 @@ sidebar: auto
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices, fee) {}
+var maxProfit = function (prices, fee) {
+  // let y = 0,
+  //   num = 0
+  // for (let i = 0; i < prices.length - 1; i++) {
+  //   // 下一个结果高于当前价格就在当前买入，下个点卖出
+  //   if (prices[i + 1] - fee > prices[i]) {
+  //     num++
+  //     y += prices[i + 1] - prices[i]
+  //   }
+  // }
+  // return y - parseInt(num * fee, 10)
+  let len = prices.length
+  if (len < 2) return 0
+
+  // cash：持有现金
+  // hold：持有股票
+  let cash = 0,
+    hold = -prices[0] - fee,
+    preCash = cash,
+    preHold = hold
+
+  for (let i = 1; i < len; i++) {
+    cash = Math.max(preCash, preHold + prices[i])
+    hold = Math.max(preHold, preCash - prices[i] - fee)
+
+    preCash = cash
+    preHold = hold
+  }
+  return cash
+}
 ```
