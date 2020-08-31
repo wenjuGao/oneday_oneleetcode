@@ -48,22 +48,23 @@ sidebar: auto
 
 ![img](http://qiniu.gaowenju.com/leecode/more-005.png)
 
+在[more-006: 买卖股票的最佳时机 II (难度:简单)](./more-006.md)中同样为多次交易，只是本题中加入了交易成本，
+那么需要在完成一次交易时在计算成本时将交易成本算入到每次交易中去计算利润。
+
+
+同样，沿用思路：
+持有股票->hold (交易)
+持有现金-> cash
+
+涉及交易的逻辑：cash - prices[i] - fee
+
+
 ```javascript
 /**
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices, fee) {
-  // let y = 0,
-  //   num = 0
-  // for (let i = 0; i < prices.length - 1; i++) {
-  //   // 下一个结果高于当前价格就在当前买入，下个点卖出
-  //   if (prices[i + 1] - fee > prices[i]) {
-  //     num++
-  //     y += prices[i + 1] - prices[i]
-  //   }
-  // }
-  // return y - parseInt(num * fee, 10)
   let len = prices.length
   if (len < 2) return 0
 

@@ -59,5 +59,33 @@ sidebar: auto
  * @param {character[][]} grid
  * @return {number}
  */
-var numIslands = function (grid) {}
+var numIslands = function (grid) {
+
+  let _result = 0,
+      m = grid.length,
+      n = grid[0] ? grid[0].length:0;
+  if (m === 0 || n === 0) return 0;
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] === "1") {
+        helper(grid, i, j, m, n);
+        _result++;
+      }
+    }
+  }
+
+function helper(grid, i, j, m, n) {
+  if (i < 0 || j < 0 || i > m - 1 || j > n - 1 || grid[i][j] === "0") return;
+
+  grid[i][j] = "0";
+
+  helper(grid, i + 1, j, m, n);
+  helper(grid, i, j + 1, m, n);
+  helper(grid, i - 1, j, m, n);
+  helper(grid, i, j - 1, m, n);
+}
+
+  return _result;
+
+}
 ```
