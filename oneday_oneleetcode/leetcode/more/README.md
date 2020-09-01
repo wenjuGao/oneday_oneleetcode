@@ -50,3 +50,5 @@ sidebar: false
 [more-019: 实现 strStr() (难度:简单)](./more-019.md)
 
 [more-020: 破解保险箱 (难度:困难)](./more-020.md)
+
+[more-021: 石子游戏 (难度:中等)](./more-021.md)
