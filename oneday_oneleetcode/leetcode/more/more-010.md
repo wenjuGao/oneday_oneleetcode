@@ -54,6 +54,14 @@ sidebar: auto
 
 ![img](http://qiniu.gaowenju.com/leecode/more-010.png)
 
+### 深度优先搜索
+
+- 遍历所有元素
+- 元素等1
+  - 遍历与这个元素相邻的1，并将遍历到的元素转换成0
+
+矩阵中遍历与某个节点相邻或者间接相邻的节点
+
 ```javascript
 /**
  * @param {character[][]} grid
@@ -82,6 +90,48 @@ var numIslands = function (grid) {
     helper(grid, i, j + 1, m, n)
     helper(grid, i - 1, j, m, n)
     helper(grid, i, j - 1, m, n)
+  }
+
+  return _result
+}
+```
+
+### 广度优先搜索
+
+```javascript
+/**
+ * @param {character[][]} grid
+ * @return {number}
+ */
+var numIslands = function (grid) {
+  let _result = 0,
+    m = grid.length,
+    n = grid[0] ? grid[0].length : 0,
+    queue = []
+  if (m === 0 || n === 0) return 0
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+       if (grid[i][j] === '1') {
+        _result++
+        grid[i][j] = '0'
+        queue.push([i, j])
+        helper(queue)
+      }
+    }
+  }
+
+  function helper(queue) {
+    const dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+      while (queue.length) {
+        let item = queue.shift()
+        for (let dir of dirs) {
+          const x = item[0] + dir[0]
+          const y = item[1] + dir[1]
+          if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] !== '1') continue
+          grid[x][y] = '0'
+          queue.push([x, y])
+        }
+      }
   }
 
   return _result

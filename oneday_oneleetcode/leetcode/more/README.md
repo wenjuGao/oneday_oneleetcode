@@ -15,6 +15,7 @@ sidebar: false
 ---
 
 股票系列问题：leetcode 上有大佬总结的动态规划题解，讲解的很清晰，详见：
+
 [股票问题系列通解（转载翻译）](https://leetcode-cn.com/circle/article/qiAgHn/)
 
 [more-005: 买卖股票的最佳时机 (难度:简单)](./more-005.md)
