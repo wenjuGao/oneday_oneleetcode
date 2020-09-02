@@ -57,10 +57,14 @@ sidebar: auto
 ### 深度优先搜索
 
 - 遍历所有元素
-- 元素等1
-  - 遍历与这个元素相邻的1，并将遍历到的元素转换成0
+- 元素等于 1
+  - 遍历与这个元素相邻的 1，并将遍历到的元素转换成 0
 
-矩阵中遍历与某个节点相邻或者间接相邻的节点
+矩阵中遍历相邻逻辑之前在[20200816: 图像渲染 (难度:简单)](../202008/20200816.md)中涉及过
+
+矩阵中遍历与某个节点相邻或者间接相邻的节点：
+
+- 遇到为 1 的位置，递归遍历其上下左右四个方向，遇到非边界且不等于 0 说明与当前位置相邻或者间接相邻，只能计数 1 次
 
 ```javascript
 /**
@@ -75,28 +79,30 @@ var numIslands = function (grid) {
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
       if (grid[i][j] === '1') {
-        helper(grid, i, j, m, n)
+        fillNUmm(i, j)
         _result++
       }
     }
   }
 
-  function helper(grid, i, j, m, n) {
+  function fillNUmm(i, j) {
     if (i < 0 || j < 0 || i > m - 1 || j > n - 1 || grid[i][j] === '0') return
 
     grid[i][j] = '0'
 
-    helper(grid, i + 1, j, m, n)
-    helper(grid, i, j + 1, m, n)
-    helper(grid, i - 1, j, m, n)
-    helper(grid, i, j - 1, m, n)
+    fillNUmm(i + 1, j)
+    fillNUmm(i, j + 1)
+    fillNUmm(i - 1, j)
+    fillNUmm(i, j - 1)
   }
 
   return _result
 }
 ```
 
-### 广度优先搜索
+### 广度优先搜索（BFS）
+
+同样和图像渲染一样本题一样可以使用广度优先搜索（BFS）解决
 
 ```javascript
 /**
@@ -111,27 +117,31 @@ var numIslands = function (grid) {
   if (m === 0 || n === 0) return 0
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
-       if (grid[i][j] === '1') {
+      if (grid[i][j] === '1') {
         _result++
         grid[i][j] = '0'
         queue.push([i, j])
-        helper(queue)
-      }
-    }
-  }
-
-  function helper(queue) {
-    const dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]]
-      while (queue.length) {
-        let item = queue.shift()
-        for (let dir of dirs) {
-          const x = item[0] + dir[0]
-          const y = item[1] + dir[1]
-          if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] !== '1') continue
-          grid[x][y] = '0'
-          queue.push([x, y])
+        while (queue.length) {
+          let [x, y] = queue.shift()
+          if (x - 1 >= 0 && grid[x - 1][y] === '1') {
+            grid[x - 1][y] = 0
+            queue.push([x - 1, y])
+          }
+          if (x + 1 < m && grid[x + 1][y] === '1') {
+            grid[x + 1][y] = 0
+            queue.push([x + 1, y])
+          }
+          if (y - 1 >= 0 && grid[x][y - 1] === '1') {
+            grid[x][y - 1] = 0
+            queue.push([x, y - 1])
+          }
+          if (y + 1 < n && grid[x][y + 1] === '1') {
+            grid[x][y + 1] = 0
+            queue.push([x, y + 1])
+          }
         }
       }
+    }
   }
 
   return _result
