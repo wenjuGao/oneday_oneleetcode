@@ -29,35 +29,43 @@ module.exports = {
 		lastUpdated: '上次更新',
 		smoothScroll: true,
 		nav: [{
-			text: '首页',
-			link: '/'
-		},
-		{
-			text: 'leetcode',
-			ariaLabel: 'leetcode',
-			items: [{
-				text: '202006',
-				link: '/leetcode/202006/'
-			}, {
-				text: '202007',
-				link: '/leetcode/202007/'
-			}, {
-				text: '202008',
-				link: '/leetcode/202008/'
-			}, {
-				text: 'more',
-				link: '/leetcode/more/'
-			}]
-		},
-		{
-			text: '算法',
-			link: '/blog/'
-		},
-		{
-			text: '博客',
-			link: 'http://gaowenju.com',
-			target: '_blank'
-		},
+				text: '首页',
+				link: '/'
+			},
+			{
+				text: 'leetcode',
+				ariaLabel: 'leetcode',
+				items: [{
+						text: '202006',
+						link: '/leetcode/202006/'
+					},
+					{
+						text: '202007',
+						link: '/leetcode/202007/'
+					},
+					{
+						text: '202008',
+						link: '/leetcode/202008/'
+					},
+					{
+						text: '202009',
+						link: '/leetcode/202009/'
+					},
+					{
+						text: 'more',
+						link: '/leetcode/more/'
+					}
+				]
+			},
+			{
+				text: '算法',
+				link: '/blog/'
+			},
+			{
+				text: '博客',
+				link: 'http://gaowenju.com',
+				target: '_blank'
+			},
 		],
 		sidebar: []
 	},
