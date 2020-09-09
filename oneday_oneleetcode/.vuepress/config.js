@@ -2,8 +2,8 @@
 
 module.exports = {
 	base: '/oneday_oneleetcode/',
-	title: '坑人的小书童',
-	description: '每天一道leetcode，从零开始学习算法 一天一大leet 小书童 坑人的小书童',
+	title: '前端小书童',
+	description: '每天一道leetcode，从零开始学习算法 一天一大leet 前端小书童',
 	extraWatchFiles: [
 		'README.md', // 使用相对路径
 	],
@@ -29,43 +29,43 @@ module.exports = {
 		lastUpdated: '上次更新',
 		smoothScroll: true,
 		nav: [{
-				text: '首页',
-				link: '/'
+			text: '首页',
+			link: '/'
+		},
+		{
+			text: 'leetcode',
+			ariaLabel: 'leetcode',
+			items: [{
+				text: '202006',
+				link: '/leetcode/202006/'
 			},
 			{
-				text: 'leetcode',
-				ariaLabel: 'leetcode',
-				items: [{
-						text: '202006',
-						link: '/leetcode/202006/'
-					},
-					{
-						text: '202007',
-						link: '/leetcode/202007/'
-					},
-					{
-						text: '202008',
-						link: '/leetcode/202008/'
-					},
-					{
-						text: '202009',
-						link: '/leetcode/202009/'
-					},
-					{
-						text: 'more',
-						link: '/leetcode/more/'
-					}
-				]
+				text: '202007',
+				link: '/leetcode/202007/'
 			},
 			{
-				text: '算法',
-				link: '/blog/'
+				text: '202008',
+				link: '/leetcode/202008/'
 			},
 			{
-				text: '博客',
-				link: 'http://gaowenju.com',
-				target: '_blank'
+				text: '202009',
+				link: '/leetcode/202009/'
 			},
+			{
+				text: 'more',
+				link: '/leetcode/more/'
+			}
+			]
+		},
+		{
+			text: '算法',
+			link: '/blog/'
+		},
+		{
+			text: '博客',
+			link: 'http://gaowenju.com',
+			target: '_blank'
+		},
 		],
 		sidebar: []
 	},

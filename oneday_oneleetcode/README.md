@@ -12,7 +12,7 @@ features:
     details: 坚持每天至少刷一道算法题，并且理解其他解法
   - title: 总结归纳
     details: 一月总结一次本月用到的算法，重新理解算法
-footer: MIT Licensed | Copyright © 2020-present 坑人的小书童
+footer: MIT Licensed | Copyright © 2020-present 前端小书童
 ---
 
 博客: [小书童博客](http://gaowenju.com/)
@@ -20,6 +20,7 @@ footer: MIT Licensed | Copyright © 2020-present 坑人的小书童
 每天的每日一题，写的题解会同步更新到公众号一天一大 lee 栏目
 欢迎关注留言
 
-公号: 坑人的小书童
+公号: 前端小书童
 
-![坑人的小书童](http://qiniu.gaowenju.com/wechat.png)
+<!-- ![前端小书童](http://qiniu.gaowenju.com/wechat-new.png) -->
+![前端小书童](http://qiniu.gaowenju.com/wechat.png)
