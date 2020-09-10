@@ -22,5 +22,4 @@ footer: MIT Licensed | Copyright © 2020-present 前端小书童
 
 公号: 前端小书童
 
-<!-- ![前端小书童](http://qiniu.gaowenju.com/wechat-new.png) -->
-![前端小书童](http://qiniu.gaowenju.com/wechat.png)
+![前端小书童](http://qiniu.gaowenju.com/wechat-new.png)
