@@ -11,7 +11,7 @@ sidebar: auto
 简单
 :::
 
-![img](http://qiniu.gaowenju.com/leecode/banner/21200609.jpg)
+![img](http://qiniu.gaowenju.com/leecode/banner/more-002.jpg)
 
 ## [题目:](https://leetcode-cn.com/problems/single-number/solution/zhi-chu-xian-yi-ci-de-shu-zi-by-leetcode-solution)
 
@@ -41,7 +41,7 @@ sidebar: auto
 
 ## 抛砖引玉
 
-![img](http://qiniu.gaowenju.com/leecode/21200609.png)
+![img](http://qiniu.gaowenju.com/leecode/more-002.png)
 
 **使用动态哈希来记录遍历过程**
 

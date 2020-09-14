@@ -11,7 +11,7 @@ sidebar: auto
 中等
 :::
 
-![img](http://qiniu.gaowenju.com/leecode/banner/more-005.jpg)
+![img](http://qiniu.gaowenju.com/leecode/banner/more-009.jpg)
 
 ## [题目:](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
 
@@ -46,7 +46,7 @@ sidebar: auto
 
 ## 抛砖引玉
 
-![img](http://qiniu.gaowenju.com/leecode/more-005.png)
+![img](http://qiniu.gaowenju.com/leecode/more-009.png)
 
 在[more-006: 买卖股票的最佳时机 II (难度:简单)](./more-006.md)中同样为多次交易，只是本题中加入了交易成本，
 那么需要在完成一次交易时在计算成本时将交易成本算入到每次交易中去计算利润。

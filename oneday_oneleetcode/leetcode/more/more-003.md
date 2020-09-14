@@ -11,7 +11,7 @@ sidebar: auto
 中等
 :::
 
-![img](http://qiniu.gaowenju.com/leecode/banner/21200609.jpg)
+![img](http://qiniu.gaowenju.com/leecode/banner/more-003.jpg)
 
 ## [题目:](https://leetcode-cn.com/problems/partition-array-into-disjoint-intervals)
 
@@ -51,7 +51,7 @@ sidebar: auto
 
 ## 抛砖引玉
 
-![img](http://qiniu.gaowenju.com/leecode/21200609.png)
+![img](http://qiniu.gaowenju.com/leecode/more-003.png)
 
 ```javascript
 /**
