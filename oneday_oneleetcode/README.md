@@ -21,3 +21,50 @@ footer: MIT Licensed | Copyright © 2020-present 前端小书童
 欢迎关注留言
 
 ![前端小书童](http://qiniu.gaowenju.com/wechat-new.png)
+
+```javascript
+/**
+ * @param {number[][]} edges
+ * @return {number[]}
+ */
+var findRedundantDirectedConnection = function(edges) {
+  let len = edges.length,
+    Disjoint = Array(len + 1).fill(-1),
+    map = new Map(),
+    conflict = -1,
+    cycle = -1
+
+  // 查询根节点
+  function find_root(index) {
+    let root = index
+    while (Disjoint[root] != -1) {
+      root = find(Disjoint[root])
+    }
+    return root
+  }
+  // 遍历有向图
+  for (let i = 0; i < len; ++i) {
+    let [x, y] = edges[i];
+    if (map.has(y)) {
+      conflict = i
+    } else {
+      map.set(y,x)
+      if (find_root(x) == find_root(y)) {
+        cycle = i
+      } else {
+        Disjoint[find_root(x)] = find_root(y)
+      }
+    }
+  }
+  if (conflict < 0) {
+    return [edges[cycle][0], edges[cycle][1]]
+  } else {
+    let [x,y] = edges[conflict]
+    if (cycle >= 0) {
+      return [parent[y], y]
+    } else {
+      return [x,y]
+    }
+  }
+}
+```
