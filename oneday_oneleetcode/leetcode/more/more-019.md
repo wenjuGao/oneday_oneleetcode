@@ -44,11 +44,45 @@ sidebar: auto
 
 ![抛砖引玉](http://qiniu.gaowenju.com/leecode/more-019.png)
 
+**思路**
+
+暴力对比
+
 ```javascript
 /**
  * @param {string} haystack
  * @param {string} needle
  * @return {number}
  */
-var strStr = function (haystack, needle) {}
+var strStr = function(haystack, needle) {
+  if (!needle) return 0
+  let i = 0
+  while (i < haystack.length) {
+    let j = 0
+    while (j < needle.length) {
+      if (haystack[i + j] === needle[j]) {
+        j++
+        if (j === needle.length) return i
+      } else {
+        i++
+        break
+      }
+    }
+  }
+  return -1
+}
+```
+
+```javascript
+var strStr = function(haystack, needle) {
+  if (!needle) return 0
+  let hlen = haystack.length,
+    nlen = needle.length
+  for (let i = 0; i < hlen - nlen + 1; ++i) {
+    if (haystack.substring(i, i + nlen) === needle) {
+      return i
+    }
+  }
+  return -1
+}
 ```
