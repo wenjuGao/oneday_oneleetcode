@@ -46,7 +46,9 @@ sidebar: auto
 
 **思路**
 
-暴力对比
+暴力对比：
+
+haystack中逐个字符与needle比较，遇到能从开始到结束都相等则直接返回这个开始的索引。
 
 ```javascript
 /**
@@ -72,6 +74,10 @@ var strStr = function(haystack, needle) {
   return -1
 }
 ```
+
+从haystack第一个与needle的第一个字符相等的的自开始，截取与needle长度相同的子字符：
+- 如果当前截取的子字符与needle相同则得到开始匹配的索引。
+- 如果不相同则继续向后查找可以与needle第一个字符匹配的字符。
 
 ```javascript
 var strStr = function(haystack, needle) {
