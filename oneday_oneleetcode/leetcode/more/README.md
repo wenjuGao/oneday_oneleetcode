@@ -56,4 +56,4 @@ sidebar: false
 
 [more-022: 单词搜索 II (难度:困难)](./more-022.md)
 
-[more-022: 单词搜索 II (难度:困难)](./more-022.md)
+[more-023: 实现 Trie (前缀树) (难度:中等)](./more-023.md)

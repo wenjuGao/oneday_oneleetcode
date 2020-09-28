@@ -21,14 +21,16 @@ sidebar: auto
 
 ### 示例
 
-1. 示例1
+1. 示例 1
+
 ```
 输入: [2,3,2]
 输出: 3
 解释: 你不能先偷窃 1 号房屋（金额 = 2），然后偷窃 3 号房屋（金额 = 2）, 因为他们是相邻的。
 ```
 
-2. 示例2
+2. 示例 2
+
 ```
 输入: [1,2,3,1]
 输出: 4
@@ -55,7 +57,7 @@ sidebar: auto
 var rob = function(nums) {
   if (nums.length < 3) return Math.max(...nums, 0)
 
-  // 去投去尾计算值
+  // 去头去尾计算值
   let noStart = dfs(nums.slice(1)),
     noEnd = dfs(nums.slice(0, nums.length - 1))
 
@@ -63,20 +65,18 @@ var rob = function(nums) {
   function dfs(nums) {
     if (nums.length < 3) return Math.max(...nums, 0)
     let len = nums.length,
-      dp = Array(len);
-    dp[0] = nums[0];
-    dp[1] = Math.max(nums[0], nums[1]);
+      dp = Array(len)
+    dp[0] = nums[0]
+    dp[1] = Math.max(nums[0], nums[1])
 
     for (let i = 2; i < len; i++) {
-      dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+      dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
     }
     return dp[len - 1]
   }
 
   return Math.max(noStart, noEnd)
-};
+}
 ```
 
-另外一种思路，可以通过声明两个指针来限定累加的范围，最终返回0-len-2，与1-len-1的最大值
-
-
+另外一种思路，可以通过声明两个指针来限定累加的范围，最终返回 0-len-2，与 1-len-1 的最大值

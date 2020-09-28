@@ -72,7 +72,7 @@ var permute = function(nums) {
       inList.delete(nums[i])
     }
   }
-  if (nums.length < 2) return nums.length === 1 ? [nums]: _result
+  if (nums.length < 2) return nums.length === 1 ? [nums] : _result
   helper([])
   return _result
 }
@@ -91,7 +91,7 @@ var permute = function(nums) {
  */
 var permute = function(nums) {
   let _result = []
-  if (nums.length < 2) return nums.length === 1 ? [nums]: _result
+  if (nums.length < 2) return nums.length === 1 ? [nums] : _result
   function helper(index) {
     if (index === nums.length) {
       _result.push([...nums])

@@ -76,7 +76,7 @@ ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, 以及 ans.next.next.next 
  * @param {ListNode} head
  * @return {ListNode}
  */
-var middleNode = function (head) {
+var middleNode = function(head) {
   let item = head,
     step = head
   while (item != null && item.next != null) {
@@ -96,7 +96,7 @@ var middleNode = function (head) {
 本题要求如果有两个索引返回第二个及(len/2)
 
 ```javascript
-var middleNode = function (head) {
+var middleNode = function(head) {
   let A = [head]
   while (A[A.length - 1].next != null) {
     A.push(A[A.length - 1].next)
@@ -111,7 +111,7 @@ var middleNode = function (head) {
 然后再查询到中间长度位置的节点
 
 ```javascript
-var middleNode = function (head) {
+var middleNode = function(head) {
   let n = 0,
     cur = head
   while (cur != null) {

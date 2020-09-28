@@ -57,5 +57,5 @@ sidebar: auto
  * @param {number} k
  * @return {string}
  */
-var crackSafe = function (n, k) {}
+var crackSafe = function(n, k) {}
 ```

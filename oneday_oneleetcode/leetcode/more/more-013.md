@@ -57,16 +57,29 @@ sidebar: auto
 ![img](http://qiniu.gaowenju.com/leecode/more-013.png)
 
 梳理下题目给出的信息：
+
 - 参数：
-  - numCourses课程数
-  - prerequisites修课的依赖关系[a,b],修b之前需要先修a（prerequisites中所有元素均在0到numCourses-1之间）
+  - numCourses 课程数
+  - prerequisites 修课的依赖关系[a,b],修 b 之前需要先修 a（prerequisites 中所有元素均在 0 到 numCourses-1 之间）
 - 返回：
   - 能修完全课程则返回一种修课顺序
   - 不能修完返回[]
 
+声明一个 numCourses 长的数组，来重新存放课程之间的依赖关系：索引位的课程依赖的前置课程存到到其索引位置（可能是多个）
+遍历课程，如果其有前置课程就遍历学习其前置课程：
 
+- 如果遇到已经遍历过未修的课程说明前置课程的依赖关系形成了环（即多个课程的依赖关系是相互依赖不能找到满足条件的先修课程）
+- 如果遇到已修课程则此已修课程作为该组课程的先修课程
+- 最后如果课程全部均标记修完则说明找到满足要求的结果
 
 ### 深度优先搜索(DFS)
+
+- edges：存放新依赖关系
+- visited：标记访问状态：
+  - 0：未修
+  - 1：未修,且是在寻找依赖的前置课程
+  - 2：已修
+- hoop:是否成环
 
 ```javascript
 /**
@@ -75,167 +88,98 @@ sidebar: auto
  * @return {number[]}
  */
 var findOrder = function(numCourses, prerequisites) {
-  // 存储有向图
   let edges = Array.from({ length: numCourses }, () => []),
-  // 标记每个节点的状态：0=未搜索，1=搜索中，2=已完成
     visited = Array(numCourses).fill(0),
     _result = Array(numCourses),
-    valid = true,
-    index = numCourses - 1;
-  for (let i = 0; i < prerequisites.length;i++) {
-      let [a,b] = prerequisites[i];
-      edges[b].push(a);
+    hoop = false,
+    index = numCourses - 1
+  // 初始化依赖关系
+  for (let i = 0; i < prerequisites.length; i++) {
+    let [a, b] = prerequisites[i]
+    edges[b].push(a)
   }
-  // 每次挑选一个「未搜索」的节点，开始进行深度优先搜索
-  for (let i = 0; i < numCourses && valid; i++) {
-      if (visited[i] == 0) dfs(i)
+  // 开始修课，遇到成环就终止
+  for (let i = 0; i < numCourses && !hoop; i++) {
+    if (visited[i] == 0) dfs(i)
   }
+  // 如果成环则不能完成所有课程
+  if (hoop) return []
 
-  if (!valid) return [];
-
-  function dfs(u){
-    // 将节点标记为「搜索中」
-    visited[u] = 1;
-    // 搜索其相邻节点
-    // 只要发现有环，立刻停止搜索
-    for (let i = 0 ; i< edges[u].length;++i) {
-        let v = edges[u][i];
-        // 如果「未搜索」那么搜索相邻节点
-        if (visited[v] == 0) {
-            dfs(v);
-            if (!valid) return
-        }
-        // 如果「搜索中」说明找到了环
-        else if (visited[v] == 1) {
-            valid = false;
-            return;
-        }
+  function dfs(item) {
+    // 标记：1. 寻找依赖
+    visited[item] = 1
+    // 遍历当前课程依赖课程
+    for (let i = 0; i < edges[item].length; ++i) {
+      let x = edges[item][i]
+      // 前置课程是未修，则继续查找前置课程的前置课程...
+      if (visited[x] == 0) {
+        dfs(x)
+        if (hoop) return
+      } else if (visited[x] == 1) {
+        hoop = true
+        return
+      }
     }
-    // 将节点标记为「已完成」
-    visited[u] = 2;
-    // 将节点入栈
-    _result[index--] = u;
+    // 标记已修
+    visited[item] = 2
+    // 先修课程满足则记录修课顺序
+    _result[index--] = item
   }
-  // 如果没有环，那么就有拓扑排序
-  return _result;
+  // 如果没有环返回结果
+  return _result
 }
-```
-
-
-```javascript
-var findOrder = function(numCourses, prerequisites) {
-    function dfs(i){
-        if(state[i] == 1) return false;
-        else if(state[i] == 0){
-            state[i] = 1;
-            let node = graph[i];
-            for(let j = 0; node != undefined && j < node.length; j++){
-                if(!dfs(node[j])) return false;
-            }
-            state[i] = 2;
-            res.push(i);
-        }
-        return true;
-    }
-
-    let res = [],
-        graph = {},
-        state = new Array(numCourses).fill(0);
-    for(let i = 0; i < prerequisites.length; i++){
-        if(graph[prerequisites[i][1]] == undefined) graph[prerequisites[i][1]] = [];
-        graph[prerequisites[i][1]].push(prerequisites[i][0]);
-    }
-    for(let i = 0; i < numCourses; i++){
-        if(state[i] == 0){
-            dfs(i);
-        }  
-    }
-    return state.filter((a)=> a != 2).length != 0 ? [] : res.reverse();
-};
 ```
 
 ### 深度优先搜索(BFS)
 
+就每个课程来看：
+
+- 其依赖的课程可在看做其入度
+- 依赖其的课程可看做其出度
 
 ```javascript
-var findOrder = function (numCourses, prerequisites) {
-  let indegree = new Array(numCourses).fill(0) // 入度表
-  let outdegreeMap = {}
+var findOrder = function(numCourses, prerequisites) {
+  let _result = [],
+    indegree = new Array(numCourses).fill(0), // 入度
+    outdegreeMap = new Map() // 出度
 
+  // 初始化入度出度数据
   for (let i = 0; i < prerequisites.length; i++) {
-    // 更新入度表
-    indegree[prerequisites[i][0]]++
-    // 更新出度表
-    if (outdegreeMap[prerequisites[i][1]]) { // 出度表已存在
-      outdegreeMap[prerequisites[i][1]].push(prerequisites[i][0])
+    let [x, y] = prerequisites[i]
+    indegree[x]++
+    if (outdegreeMap.has(y)) {
+      outdegreeMap.get(y).push(x)
     } else {
-      outdegreeMap[prerequisites[i][1]] = [prerequisites[i][0]]
+      outdegreeMap.set(y, [x])
     }
   }
 
   let queue = []
+  // 将入度等于0的课程入列（无前置依赖的优先修）
   for (let i = 0; i < indegree.length; i++) {
-    // 将入度等于0的课程入列
     if (indegree[i] === 0) queue.push(i)
   }
 
-  const result = []
+  // 从被依赖的课程开始修
   while (queue.length) {
-    // 出队列
-    let course = queue.shift()
-    result.push(course)
-    if (outdegreeMap[course]) { // 如果存在下游课程
-      for (let i = 0; i < outdegreeMap[course].length; i++) {
-        // 更新入度表
-        indegree[outdegreeMap[course][i]]--
-        if (indegree[outdegreeMap[course][i]] === 0) {
-          queue.push(outdegreeMap[course][i])
+    let item = queue.shift()
+    _result.push(item)
+    if (outdegreeMap.get(item)) {
+      let list = outdegreeMap.get(item)
+      for (let i = 0; i < list.length; i++) {
+        indegree[list[i]]--
+        // 如果本轮修完课程无入度则可以选修
+        if (indegree[list[i]] === 0) {
+          queue.push(list[i])
         }
       }
     }
   }
-
+  // 如果存在课程未被修则返回不能满足选修完
   for (let i = 0; i < indegree.length; i++) {
     if (indegree[i] > 0) return []
   }
 
-  return result
-};
-```
-
-
-```javascript
-var findOrder = (numCourses, prerequisites) => {
-  let inDegree = new Array(numCourses).fill(0) // 初始化入度数组
-  let graph = {} // 哈希表
-  for (let i = 0; i < prerequisites.length; i++) {
-    inDegree[prerequisites[i][0]]++ // 构建入度数组
-    if (graph[prerequisites[i][1]]) { // 构建哈希表
-      graph[prerequisites[i][1]].push(prerequisites[i][0])
-    } else {
-      let list = []
-      list.push(prerequisites[i][0])
-      graph[prerequisites[i][1]] = list
-    }
-  }
-  let res = [] // 结果数组
-  let queue = [] // 存放 入度为0的课
-  for (let i = 0; i < numCourses; i++) { // 起初推入所有入度为0的课
-    if (inDegree[i] === 0) queue.push(i)
-  }
-  while (queue.length) { // 没有了入度为0的课，没课可选，结束循环
-    let cur = queue.shift() // 出栈，代表选这门课
-    res.push(cur) // 推入结果数组
-    let toEnQueue = graph[cur] // 查看哈希表，获取对应的后续课程
-    if (toEnQueue && toEnQueue.length) { // 确保有后续课程
-      for (let i = 0; i < toEnQueue.length; i++) { // 遍历后续课程
-        inDegree[toEnQueue[i]]-- // 将后续课程的入度 -1
-        if (inDegree[toEnQueue[i]] == 0) { // 一旦减到0，让该课入列
-          queue.push(toEnQueue[i])
-        }
-      }
-    }
-  }
-  return res.length === numCourses ? res : [] // 选齐了就返回res，否则返回[]
-};
+  return _result
+}
 ```

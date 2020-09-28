@@ -20,4 +20,4 @@ footer: MIT Licensed | Copyright © 2020-present 前端小书童
 每天的每日一题，写的题解会同步更新到公众号一天一大 lee 栏目
 欢迎关注留言
 
-![前端小书童](http://qiniu.gaowenju.com/wechat-new.png)
+![公众号：前端小书童](http://qiniu.gaowenju.com/wechat-new.png)
