@@ -13,7 +13,7 @@
 
 博客: [小书童博客](http://gaowenju.com/)
 
-公号: 坑人的小书童
+每天的每日一题，写的题解会同步更新到公众号一天一大 lee 栏目
+欢迎关注留言
 
-![坑人的小书童](http://qiniu.gaowenju.com/qrcode.jpg)
-·
+![公众号：前端小书童](http://qiniu.gaowenju.com/wechat-new.png)
