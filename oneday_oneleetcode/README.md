@@ -15,7 +15,7 @@ features:
 footer: MIT Licensed | Copyright © 2020-present 前端小书童
 ---
 
-博客: [小书童博客](http://gaowenju.com/)
+博客: [前端小书童](http://gaowenju.com/)
 
 每天的每日一题，写的题解会同步更新到公众号一天一大 lee 栏目
 欢迎关注留言
