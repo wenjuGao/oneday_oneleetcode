@@ -56,6 +56,10 @@ module.exports = {
 				link: '/leetcode/202010/'
 			},
 			{
+				text: '202011',
+				link: '/leetcode/202011/'
+			},
+			{
 				text: 'more',
 				link: '/leetcode/more/'
 			}
