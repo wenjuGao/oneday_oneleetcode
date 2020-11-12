@@ -1,0 +1,175 @@
+---
+title: 分割数组的最大值
+tags:
+  - 分割数组的最大值
+sidebar: auto
+---
+
+### 分割数组的最大值
+
+::: tip 难度
+困难
+:::
+
+![img](http://qiniu.gaowenju.com/leecode/banner/20200725.jpg)
+
+## [题目:](https://leetcode-cn.com/problems/split-array-largest-sum/)
+
+给定一个非负整数数组和一个整数 m，你需要将这个数组分成 m 个非空的连续子数组。
+设计一个算法使得这 m 个子数组各自和的最大值最小。
+
+### 注意:
+
+数组长度 n 满足以下条件:
+
+- 1 ≤ n ≤ 1000
+- 1 ≤ m ≤ min(50, n)
+
+### 示例:
+
+```
+输入:
+nums = [7,2,5,10,8]
+m = 2
+
+输出:
+18
+
+解释:
+一共有四种方法将nums分割为2个子数组。
+其中最好的方式是将其分为[7,2,5] 和 [10,8]，
+因为此时这两个子数组各自的和的最大值为18，在所有情况中最小。
+```
+
+
+## 抛砖引玉
+
+![img](http://qiniu.gaowenju.com/leecode/20200725.png)
+
+
+### 动态规则
+
+**思路**
+- 声明dp记录长i的数组分割成j段，每段和最大值组成的list中最小的值
+
+|7,2,5|10,8|
+|-----|----|
+|sum1|sum2|
+|dp[3][1]|dp[5][2]|
+
+- dp[i][j] -> 前i个数字分割成j段，每段和的最大值中的最小值
+
+--- 
+
+- nums中增加一个元素时，这个元素一定是要追加到最后一个分段里面
+- 那此时dp[i][j]要存放的值是上一个位置的结果dp[i-x][j-1]和最后一个分段[x-i]和中较大的值
+- 其中x是最后一个分段的起点，例子中的4
+- x的取值：j-1到i,即最后一段最长是j-1，最短i
+  - 最长时前面每段一个
+  - 最短时只有最后一个元素
+- 每增加一个元素遍历m进行分割，得到每个分割段最大值
+- 再将所有分割组合得到的最大值存放到dp中，如果之前该位置出现过较小的结果则不替换
+
+**边界**
+- dp[0][0],0个数分成0段默认0
+- dp[0][0]被默认占用则dp需要声明成[len+1][m+1]的数组
+- 在分割nums是逐个增加元素，存在m大于当前给定数组的情况，怎么遍历分割时，j的边界为m与i中较小的值
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} m
+ * @return {number}
+ */
+var splitArray = function(nums, m) {
+  let len = nums.length,
+    sumList = Array(len + 1).fill(0),
+    dp = Array.from({ length: len + 1 }, () => Array(m + 1).fill(Number.MAX_VALUE));
+
+  // 逐位增加，反面后面根据区间求区间和
+  for (let i = 0; i < len; i++) {
+    sumList[i + 1] = sumList[i] + nums[i];
+  }
+  // 默认值
+  dp[0][0] = 0;
+
+  for (let i = 1; i <= len; i++) {
+    for (let j = 1; j <= Math.min(m, i); j++) {
+      // 前i个数分成j段
+      for (let x = j - 1; x < i; x++) {
+        // x最后一段的起点
+        // perv本轮分割完成 分段中最大的和
+        let prev = Math.max(dp[x][j - 1], sumList[i] - sumList[x])
+        // 该分割情况下最大分段和的最小值
+        dp[i][j] = Math.min(prev, dp[i][j])
+      }
+    }
+  }
+
+  return dp[len][m]
+};
+```
+
+### 二分法
+
+根据结果范围枚举可能的结果
+再这个校验假设的结果是否成立
+
+- 不管怎么分段结果都应该在nums最大值max和nums元素和sum之间
+- 二分法查找max到sum之间的元素
+- 检查其是否满足，逐步缩小可能的结果范围，返回可能的最小值
+
+**校验逻辑**
+- 假设结果val
+- 遍历nums,当累加和大于val，则更换起点从超过val的第一个数算起重新累加
+- 每次重置起点即形成一个片段
+- 最终形成的片段数没有超过m，则说明这个假设的结果val成立
+
+
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} m
+ * @return {number}
+ */
+var splitArray = function(nums, m) {
+  let max = 0
+      sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (max < nums[i]) max = nums[i];
+    sum += nums[i];
+  }
+
+  while (max < sum) {
+    let mid = parseInt((sum - max) / 2, 10) + max;
+    // 随机选择的值成立则这个值默认为最大的可能结果继续查找
+    if (check(nums, mid, m)) {
+      sum = mid;
+    } else {
+      // 不满足，重置最小可能结果
+      max = mid + 1;
+    }
+  }
+
+  function check(nums, val, m) {
+    let sum = 0,
+        index = 1;
+    for (let i = 0; i < nums.length; i++) {
+      // 如果分段和大于了假设的结果说明，i是该分段的终点，形成一个分段
+      // index记录+1，i就成了下一个分段的起点（重置sum）开始校验下一个分段
+      if (sum + nums[i] > val) {
+        index++;
+        sum = nums[i];
+      } else {
+        sum += nums[i];
+      }
+    }
+    // 如果index即分段数量满足小于等于m则说明这个假设值成立
+    return index <= m;
+  }
+
+// 返回最小可能结果
+  return max;
+};
+```
